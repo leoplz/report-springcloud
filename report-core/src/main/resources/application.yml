@@ -1,0 +1,9 @@
+server:
+  port: 80
+spring:
+  application:
+    name: report-core
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18080/eureka

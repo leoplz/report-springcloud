@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.leojack.dao.GoodsDao">
+    <resultMap type="com.leojack.entity.Goods" id="GoodsMap">
+        <id column="goods_id" property="goodsId"/>
+        <result column="goods_type" property="goodsType"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="goods_parent_id" property="goodsParentId"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modify_time"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+
+    <sql id="allParam">
+      goods_id ,goods_type,goods_name,goods_parent_id ,goods_price , create_time,modify_time,is_delete
+    </sql>
+
+    <select id="queryGoodsById" parameterType="java.lang.String" resultMap="GoodsMap">
+        select <include refid="allParam"></include> from tb_goods where goods_id = #{goodsId};
+    </select>
+
+
+    <insert id="insertGoods"  parameterType="com.leojack.entity.Goods">
+	    insert into tb_goods ( <include refid="allParam"></include> ) values (
+	    	#{goodsId},
+	    	#{goodsType},
+	    	#{goodsName},
+	    	#{goodsParentId},
+	    	#{goodsPrice},
+	    	now(),
+	    	now(),
+	    	#{isDelete}
+	    )
+
+	</insert>
+
+
+</mapper>
