@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 38080
 spring:
   application:
     name: report-core
